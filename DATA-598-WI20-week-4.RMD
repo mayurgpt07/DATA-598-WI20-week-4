@@ -1,0 +1,59 @@
+---
+title: "R Markdown Using Template"
+subtitle: "DATA 598 Week-4 Class Excercise"
+author: "Mayur Gupta"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html: default
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: biblography.bib
+link-citations: no
+---
+
+```{r setup, include=FALSE}
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tufte'),echo = FALSE,
+                      comment = "%%",
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.path = "../figures/")
+options(htmltools.dir.version = FALSE)
+```
+
+```{r load-data, message=FALSE}
+library(tidyverse)
+data <- data(starwars)
+knitr::read_chunk("ExternaLSourceCode.R")
+```
+
+# A ggplot of starwars stuff
+
+```{r starwars-plot, dependson="load-data", fig.align='center', cache=TRUE}
+```
+
+We used scatter plot to display the mass vs height of human species. Just to make it more interesting I tried adding regression line to it
+
+# My non-code yoda figure
+```{r, starwars-fig}
+knitr::include_graphics("figures/StarWars.jpg")
+```
+
+May the force be with you ALWAYS!!
+
+# A knit kable table of  starwars data
+
+```{r starwars-tbl, dependson="load-data", cache=TRUE}
+```
+
+We can see in above table, some data for **Droid** and **Human** species. The Starwars table seems to have a lot less data for Droids as compared to Humans
+
+On a site note, these articles are fun to read [@R-base; @R-rmarkdown].
+
+
+# References
